@@ -1,11 +1,7 @@
+require "localizator/version"
+require "localizator/helpers"
+
 module Localizator
-
-  class Railtie < Rails::Railtie
-
-    rake_tasks do
-      load "tasks/localizator.rake"
-    end
+  class Engine < Rails::Engine
   end
-
 end
-

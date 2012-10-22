@@ -1,8 +1,24 @@
-== Localizator
+# Localizator
+
 This plugin provides two simple rake tasks to help keeping tranlations in
 sync with the default locale.
 
-= Usage
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'localizator'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install localizator
+
+## Usage
+
 Start creating a new locale with:
 
     rake localizator:update[nl]
@@ -28,5 +44,10 @@ task with:
 Then translate the missing keys in your 'config/locales/nl-missing.yml'
 file and merge them back into the main locale file.
 
-Happy localization!
+## Contributing
 
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
