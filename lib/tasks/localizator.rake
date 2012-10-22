@@ -4,6 +4,7 @@ namespace :localizator do
   task :update, [:locale] => :environment do |t, args|
     args.with_defaults(:locale => 'new_locale')
     dl = I18n.default_locale.to_s
+    dl = "en"
     tl = args[:locale]
     filename = "#{Rails.root}/config/locales/#{tl}-missing.yml"
     if File.exists?(filename)
@@ -12,8 +13,10 @@ namespace :localizator do
     else
       translations = {}
       I18n.load_path.each do |file|
-        tree = YAML::parse(File.open(file))
-        translations.deep_merge!(tree.transform)
+        if File.extname(file) == ".yml"
+          tree = YAML::parse(File.open(file))
+          translations.deep_merge!(tree.transform)
+        end
       end
       missing_translations = {tl => Localizator::Helpers::locale_diff(translations[dl], translations[tl])}
       if !missing_translations[tl].empty?
@@ -39,8 +42,10 @@ namespace :localizator do
     else
       translations = {}
       I18n.load_path.each do |file|
-        tree = YAML::parse(File.open(file))
-        translations.deep_merge!(tree.transform)
+        if File.extname(file) == ".yml"
+          tree = YAML::parse(File.open(file))
+          translations.deep_merge!(tree.transform)
+        end
       end
       final = {tl => translations[tl]}
       base = "#{Rails.root}/config/locales/#{tl}.yml"
