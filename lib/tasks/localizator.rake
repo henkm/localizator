@@ -4,7 +4,7 @@ namespace :localizator do
   task :update, [:locale] => :environment do |t, args|
     args.with_defaults(:locale => 'new_locale')
     dl = I18n.default_locale.to_s
-    dl = "en"
+    
     tl = args[:locale]
     filename = "#{Rails.root}/config/locales/#{tl}-missing.yml"
     if File.exists?(filename)
